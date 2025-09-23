@@ -5,7 +5,6 @@ Copyright 2014-2017, Mario Mulansky <mario.mulansky@gmx.net>
 Distributed under the BSD License
 
 """
-import os
 from setuptools import setup, find_packages
 from distutils.extension import Extension
 

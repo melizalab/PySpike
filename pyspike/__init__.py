@@ -35,24 +35,12 @@ from .spike_directionality import spike_directionality, \
     spike_train_order_bi, spike_train_order_multi, \
     optimal_spike_train_sorting, permutate_matrix
 
-# define the __version__ following
-# http://stackoverflow.com/questions/17583443
-from pkg_resources import get_distribution, DistributionNotFound
-import os.path
-
+from importlib.metadata import version, PackageNotFoundError
 try:
-    _dist = get_distribution('pyspike')
-    # Normalize case for Windows systems
-    dist_loc = os.path.normcase(_dist.location)
-    here = os.path.normcase(__file__)
-    if not here.startswith(os.path.join(dist_loc, 'pyspike')):
-        # not installed, but there is another version that *is*
-        raise DistributionNotFound
-except DistributionNotFound:
+    __version__ = version('pyspike')
+except PackageNotFoundError:
     __version__ = 'Please install this project with setup.py'
-else:
-    __version__ = _dist.version
-
+    
 disable_backend_warning = False
 
 def NoCythonWarn():
