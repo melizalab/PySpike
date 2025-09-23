@@ -14,6 +14,7 @@ import numpy
 from Cython.Distutils import build_ext
 
 
+<<<<<<< HEAD
 ext_modules = [
     Extension("pyspike.cython.cython_add", ["pyspike/cython/cython_add.pyx"]),
     Extension("pyspike.cython.cython_profiles", ["pyspike/cython/cython_profiles.pyx"]),
@@ -35,6 +36,75 @@ setup(
     name="pyspike",
     packages=find_packages(exclude=["doc"]),
     version="0.7.0",
+=======
+class numpy_include(os.PathLike):
+     """Defers import of numpy until install_requires is through"""
+     def __str__(self):
+         import numpy
+         return numpy.get_include()
+
+     def __fspath__(self):
+         return str(self)
+
+
+if os.path.isfile("pyspike/cython/cython_add.c") and \
+   os.path.isfile("pyspike/cython/cython_get_tau.c") and \
+   os.path.isfile("pyspike/cython/cython_profiles.c") and \
+   os.path.isfile("pyspike/cython/cython_distances.c") and \
+   os.path.isfile("pyspike/cython/cython_directionality.c") and \
+   os.path.isfile("pyspike/cython/cython_simulated_annealing.c"):
+    use_c = True
+else:
+    use_c = False
+
+if not use_cython and not use_c:
+    print('Cython not installed. Programs will be slow.')
+    # Ans = input('Abort? (Y/N)\n')
+    # if len(Ans)>0 and (Ans[0]=='Y' or Ans[0]=='y'):
+    #     print("\nAborting\n")
+    #     raise RuntimeError('User termination')
+
+cmdclass = {}
+ext_modules = []
+
+if use_cython:  # Cython is available, compile .pyx -> .c
+    ext_modules += [
+        Extension("pyspike.cython.cython_add",
+                  ["pyspike/cython/cython_add.pyx"]),
+        Extension("pyspike.cython.cython_get_tau",
+                  ["pyspike/cython/cython_get_tau.pyx"]),
+        Extension("pyspike.cython.cython_profiles",
+                  ["pyspike/cython/cython_profiles.pyx"]),
+        Extension("pyspike.cython.cython_distances",
+                  ["pyspike/cython/cython_distances.pyx"]),
+        Extension("pyspike.cython.cython_directionality",
+                  ["pyspike/cython/cython_directionality.pyx"]),
+        Extension("pyspike.cython.cython_simulated_annealing",
+                  ["pyspike/cython/cython_simulated_annealing.pyx"])
+    ]
+    cmdclass.update({'build_ext': build_ext})
+elif use_c:  # c files are there, compile to binaries
+    ext_modules += [
+        Extension("pyspike.cython.cython_add",
+                  ["pyspike/cython/cython_add.c"]),
+        Extension("pyspike.cython.cython_get_tau",
+                  ["pyspike/cython/cython_get_tau.c"]),
+        Extension("pyspike.cython.cython_profiles",
+                  ["pyspike/cython/cython_profiles.c"]),
+        Extension("pyspike.cython.cython_distances",
+                  ["pyspike/cython/cython_distances.c"]),
+        Extension("pyspike.cython.cython_directionality",
+                  ["pyspike/cython/cython_directionality.c"]),
+        Extension("pyspike.cython.cython_simulated_annealing",
+                  ["pyspike/cython/cython_simulated_annealing.c"])
+    ]
+# neither cython nor c files available -> automatic fall-back to python backend
+
+setup(
+    name='pyspike',
+    packages=find_packages(exclude=['doc', 'test*']),
+    version='0.8.0',
+>>>>>>> upstream
     cmdclass=cmdclass,
     ext_modules=ext_modules,
     include_dirs=[numpy.get_include()],
@@ -63,6 +133,7 @@ setup(
         "Programming Language :: Python :: 3.10",
     ],
     package_data={
+<<<<<<< HEAD
         "pyspike": [
             "cython/cython_add.c",
             "cython/cython_profiles.c",
@@ -72,4 +143,14 @@ setup(
         ],
         "test": ["Spike_testdata.txt"],
     },
+=======
+        'pyspike': ['cython/cython_add.c', 
+                    'cython/cython_profiles.c',
+                    'cython/cython_get_tau.c',
+                    'cython/cython_distances.c',
+                    'cython/cython_directionality.c',
+                    'cython/cython_simulated_annealing.c'],
+        'test': ['Spike_testdata.txt']
+    }
+>>>>>>> upstream
 )
