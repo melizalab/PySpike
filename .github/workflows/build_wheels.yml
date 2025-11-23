@@ -31,7 +31,6 @@ jobs:
         env:
           CIBW_BUILD: ${{ matrix.python }}-*
           CIBW_ARCHS_MACOS: auto
-          CIBW_SKIP: ""
         with:
           package-dir: .
           output-dir: wheelhouse
