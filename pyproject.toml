@@ -45,6 +45,9 @@ dev = [
     "ruff>=0.14.3",
     "scipy>=1.13.1; platform_python_implementation == 'CPython'",
 ]
+examples = [
+    "matplotlib>=3.9.4",
+]
 
 [project.urls]
 homepage = "https://github.com/melizalab/PySpike"

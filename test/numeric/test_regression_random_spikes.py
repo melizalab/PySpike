@@ -5,21 +5,20 @@ Copyright 2015, Mario Mulansky <mario.mulansky@gmx.net>
 Distributed under the BSD License
 """
 
-from __future__ import print_function
 
 import os
+
 import numpy as np
 
+HAS_SCIPY = True
 try:
     from scipy.io import loadmat
-
-    HAS_SCIPY = True
 except ImportError:
     HAS_SCIPY = False
 import pytest
-import pyspike as spk
-
 from numpy.testing import assert_almost_equal
+
+import pyspike as spk
 
 spk.disable_backend_warning = True
 

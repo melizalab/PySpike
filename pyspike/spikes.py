@@ -3,7 +3,8 @@
 # Distributed under the BSD License
 
 import numpy as np
-from pyspike import SpikeTrain
+
+from pyspike.SpikeTrain import SpikeTrain
 
 
 ############################################################
@@ -52,7 +53,7 @@ def load_spike_trains_from_txt(
     :returns: list of :class:`.SpikeTrain`
     """
     spike_trains = []
-    with open(file_name, "r") as spike_file:
+    with open(file_name) as spike_file:
         for line in spike_file:
             if not line.startswith(comment):  # ignore comments
                 if len(line) > 1:
@@ -107,7 +108,7 @@ def save_spike_trains_to_txt(spike_trains, file_name, separator=" ", precision=8
     :param file_name: The name of the text file.
     """
     # format string to print the spike times with given precision
-    format_str = "{0:.%de}" % precision
+    format_str = "{0:.%de}" % precision  # noqa: UP031
     with open(file_name, "w") as spike_file:
         for st in spike_trains:
             s = separator.join(map(format_str.format, st.spikes))
@@ -150,7 +151,7 @@ def generate_poisson_spikes(rate, interval):
     try:
         T_start = interval[0]
         T_end = interval[1]
-    except:
+    except TypeError:
         T_start = 0
         T_end = interval
     # roughly how many spikes are required to fill the interval

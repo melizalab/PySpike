@@ -3,16 +3,16 @@
 # Copyright 2015, Mario Mulansky <mario.mulansky@gmx.net>
 # Distributed under the BSD License
 
-from __future__ import absolute_import
+
+from functools import partial
 
 import numpy as np
+
 import pyspike
 from pyspike import DiscreteFunc
-from functools import partial
 from pyspike.generic import _generic_profile_multi, resolve_keywords
 from pyspike.isi_lengths import default_thresh
 from pyspike.spikes import reconcile_spike_trains, reconcile_spike_trains_bi
-
 
 ############################################################
 # spike_directionality_values
@@ -66,7 +66,7 @@ def _spike_directionality_values_impl(
     if kwargs.get("Reconcile", True):
         spike_trains = reconcile_spike_trains(spike_trains)
     ## get the keywords:
-    MRTS, RI = resolve_keywords(**kwargs)
+    MRTS, _RI = resolve_keywords(**kwargs)
     if isinstance(MRTS, str):
         MRTS = default_thresh(spike_trains)
 
@@ -138,7 +138,7 @@ def spike_directionality(
         spike_train1, spike_train2 = reconcile_spike_trains_bi(
             spike_train1, spike_train2
         )
-    MRTS, RI = resolve_keywords(**kwargs)
+    MRTS, _RI = resolve_keywords(**kwargs)
     if isinstance(MRTS, str):
         MRTS = default_thresh([spike_train1, spike_train2])
 
@@ -165,7 +165,7 @@ def spike_directionality(
             pyspike.NoCythonWarn()
 
             # use profile.
-            d1, x = spike_directionality_values(
+            d1, _x = spike_directionality_values(
                 [spike_train1, spike_train2],
                 interval=interval,
                 max_tau=max_tau,
@@ -286,7 +286,7 @@ def spike_train_order_profile_bi(spike_train1, spike_train2, max_tau=None, **kwa
         spike_train1, spike_train2 = reconcile_spike_trains_bi(
             spike_train1, spike_train2
         )
-    MRTS, RI = resolve_keywords(**kwargs)
+    MRTS, _RI = resolve_keywords(**kwargs)
     if isinstance(MRTS, str):
         MRTS = default_thresh([spike_train1, spike_train2])
 
@@ -347,7 +347,9 @@ def spike_train_order_profile_multi(spike_trains, indices=None, max_tau=None, **
     :rtype: :class:`pyspike.function.DiscreteFunction`
     """
     prof_func = partial(spike_train_order_profile_bi, max_tau=max_tau)
-    average_prof, M = _generic_profile_multi(spike_trains, prof_func, indices, **kwargs)
+    average_prof, _M = _generic_profile_multi(
+        spike_trains, prof_func, indices, **kwargs
+    )
     return average_prof
 
 
@@ -367,7 +369,7 @@ def _spike_train_order_impl(
                     coincidence window has no upper bound.
     :returns: The spike train order value (Synfire Indicator)
     """
-    MRTS, RI = resolve_keywords(**kwargs)
+    MRTS, _RI = resolve_keywords(**kwargs)
     if isinstance(MRTS, str):
         MRTS = default_thresh([spike_train1, spike_train2])
     if interval is None:
@@ -534,10 +536,10 @@ def _optimal_spike_train_sorting_from_matrix(D, full_output=False):
 
     try:
         from .cython.cython_simulated_annealing import sim_ann_cython as sim_ann
-    except ImportError:
+    except ImportError as err:
         raise NotImplementedError(
             "PySpike with Cython required for computing spike train sorting!"
-        )
+        ) from err
 
     p, A, total_iter = sim_ann(D, T_start, T_end, alpha)
 

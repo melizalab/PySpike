@@ -1,8 +1,9 @@
+
 import numpy as np
 from numpy.testing import assert_allclose
+
 from pyspike import SpikeTrain
 from pyspike.spikes import reconcile_spike_trains
-import pdb
 
 
 def test_reconcile():

@@ -3,19 +3,21 @@
 # Copyright 2014-2015, Mario Mulansky <mario.mulansky@gmx.net>
 # Distributed under the BSD License
 
-from __future__ import absolute_import
+
+from functools import partial
 
 import numpy as np
-from functools import partial
+
 import pyspike
-from pyspike import DiscreteFunc, SpikeTrain
+from pyspike.DiscreteFunc import DiscreteFunc
 from pyspike.generic import (
-    _generic_profile_multi,
     _generic_distance_matrix,
+    _generic_profile_multi,
     resolve_keywords,
 )
 from pyspike.isi_lengths import default_thresh
 from pyspike.spikes import reconcile_spike_trains, reconcile_spike_trains_bi
+from pyspike.SpikeTrain import SpikeTrain
 
 
 ############################################################
@@ -79,7 +81,7 @@ def spike_sync_profile_bi(spike_train1, spike_train2, max_tau=None, **kwargs):
             spike_train1, spike_train2
         )
 
-    MRTS, RI = resolve_keywords(**kwargs)
+    MRTS, _RI = resolve_keywords(**kwargs)
     if isinstance(MRTS, str):
         MRTS = default_thresh([spike_train1, spike_train2])
 
@@ -130,7 +132,9 @@ def spike_sync_profile_multi(spike_trains, indices=None, max_tau=None, **kwargs)
 
     """
     prof_func = partial(spike_sync_profile_bi, max_tau=max_tau)
-    average_prof, M = _generic_profile_multi(spike_trains, prof_func, indices, **kwargs)
+    average_prof, _M = _generic_profile_multi(
+        spike_trains, prof_func, indices, **kwargs
+    )
     # average_dist.mul_scalar(1.0/M)  # no normalization here!
     return average_prof
 
@@ -145,7 +149,7 @@ def _spike_sync_values(spike_train1, spike_train2, interval, max_tau, **kwargs):
     Do not call this function directly, use `spike_sync` or `spike_sync_multi`
     instead.
     """
-    MRTS, RI = resolve_keywords(**kwargs)
+    MRTS, _RI = resolve_keywords(**kwargs)
     if isinstance(MRTS, str):
         MRTS = default_thresh([spike_train1, spike_train2])
     if interval is None:
@@ -187,7 +191,7 @@ def spike_sync(*args, **kwargs):
     trains. The spike synchronization value is the computed as the total number
     of coincidences divided by the total number of spikes:
 
-    .. math:: SYNC = \sum_n C_n / N.
+    .. math:: SYNC = \\sum_n C_n / N.
 
 
     Valid call structures::
@@ -272,7 +276,7 @@ def spike_sync_multi(spike_trains, indices=None, interval=None, max_tau=None, **
     if kwargs.get("Reconcile", True):
         spike_trains = reconcile_spike_trains(spike_trains)
         kwargs["Reconcile"] = False
-    MRTS, RI = resolve_keywords(**kwargs)
+    MRTS, _RI = resolve_keywords(**kwargs)
     if isinstance(MRTS, str):
         kwargs["MRTS"] = default_thresh(spike_trains)
 
@@ -351,7 +355,7 @@ def filter_by_spike_sync(
     """
     if kwargs.get("Reconcile", True):
         spike_trains = reconcile_spike_trains(spike_trains)
-    MRTS, RI = resolve_keywords(**kwargs)
+    MRTS, _RI = resolve_keywords(**kwargs)
     if isinstance(MRTS, str):
         MRTS = default_thresh(spike_trains)
     N = len(spike_trains)

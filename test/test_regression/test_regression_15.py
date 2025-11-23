@@ -8,18 +8,15 @@ Distributed under the BSD License
 
 """
 
-from __future__ import division
+
+import os
 
 import numpy as np
 from numpy.testing import (
     assert_allclose,
-    assert_almost_equal,
-    assert_array_almost_equal,
 )
 
 import pyspike as spk
-
-import os
 
 TEST_PATH = os.path.dirname(os.path.realpath(__file__))
 TEST_DATA = os.path.join(TEST_PATH, "..", "SPIKE_Sync_Test.txt")

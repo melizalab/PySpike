@@ -9,10 +9,10 @@ Distributed under the BSD License
 """
 
 import numpy as np
-from numpy.testing import assert_equal, assert_almost_equal, assert_array_equal
+from numpy.testing import assert_almost_equal, assert_array_equal
 
 import pyspike as spk
-from pyspike import SpikeTrain, DiscreteFunc
+from pyspike import DiscreteFunc, SpikeTrain
 
 
 def test_spike_directionality():

@@ -8,9 +8,10 @@ Distributed under the BSD License
 
 """
 
-from __future__ import print_function
-import numpy as np
+import os
 from copy import copy
+
+import numpy as np
 from numpy.testing import (
     assert_allclose,
     assert_almost_equal,
@@ -19,8 +20,6 @@ from numpy.testing import (
 
 import pyspike as spk
 from pyspike import SpikeTrain
-
-import os
 
 TEST_PATH = os.path.dirname(os.path.realpath(__file__))
 

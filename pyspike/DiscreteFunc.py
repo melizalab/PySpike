@@ -2,17 +2,18 @@
 # Copyright 2014-2015, Mario Mulansky <mario.mulansky@gmx.net>
 # Distributed under the BSD License
 
-from __future__ import absolute_import, print_function
+
+import collections.abc
 
 import numpy as np
-import collections.abc
+
 import pyspike
 
 
 ##############################################################
 # DiscreteFunc
 ##############################################################
-class DiscreteFunc(object):
+class DiscreteFunc:
     """A class representing values defined on a discrete set of points."""
 
     def __init__(self, x, y, multiplicity):

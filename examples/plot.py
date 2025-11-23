@@ -8,13 +8,11 @@ Copyright 2014, Mario Mulansky <mario.mulansky@gmx.net>
 Distributed under the BSD License
 """
 
-from __future__ import print_function
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 import pyspike as spk
-
 
 spike_trains = spk.load_spike_trains_from_txt("PySpike_testdata.txt", edges=(0, 4000))
 

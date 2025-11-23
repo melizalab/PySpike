@@ -1,5 +1,5 @@
-import numpy as np
 from numpy.testing import assert_allclose
+
 import pyspike as spk
 from pyspike import SpikeTrain
 from pyspike.isi_lengths import default_thresh

@@ -1,7 +1,6 @@
-import numpy as np
 from matplotlib import pyplot as plt
-import pyspike as spk
 
+import pyspike as spk
 
 st1 = spk.generate_poisson_spikes(1.0, [0, 20])
 st2 = spk.generate_poisson_spikes(1.0, [0, 20])
@@ -25,7 +24,7 @@ plt.title("Spike Train Order Profile")
 
 M = 20
 
-spike_trains = [spk.generate_poisson_spikes(1.0, [0, 100]) for m in xrange(M)]
+spike_trains = [spk.generate_poisson_spikes(1.0, [0, 100]) for m in range(M)]
 
 F_init = spk.spike_train_order(spike_trains)
 

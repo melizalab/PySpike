@@ -7,10 +7,9 @@ Copyright 2014, Mario Mulansky <mario.mulansky@gmx.net>
 Distributed under the BSD License
 """
 
-from __future__ import print_function
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 import pyspike as spk
 

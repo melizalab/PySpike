@@ -4,74 +4,82 @@ Copyright 2014-2018, Mario Mulansky <mario.mulansky@gmx.net>
 Distributed under the BSD License
 """
 
-from __future__ import absolute_import
-
 __all__ = [
-    "isi_distance",
-    "spike_distance",
-    "spike_sync",
-    "psth",
-    "spikes",
-    "spike_directionality",
-    "SpikeTrain",
+    "DiscreteFunc",
     "PieceWiseConstFunc",
     "PieceWiseLinFunc",
-    "DiscreteFunc",
+    "SpikeTrain",
+    "filter_by_spike_sync",
+    "generate_poisson_spikes",
+    "import_spike_trains_from_time_series",
+    "isi_distance",
+    "isi_distance_matrix",
+    "isi_distance_multi",
+    "isi_profile",
+    "isi_profile_multi",
+    "load_spike_trains_from_txt",
+    "psth",
+    "spike_directionality",
+    "spike_directionality_matrix",
+    "spike_distance",
+    "spike_distance_matrix",
+    "spike_profile",
+    "spike_sync",
+    "spike_sync_matrix",
+    "spike_sync_profile",
+    "spike_sync_profile_multi",
+    "spike_train_order",
+    "spike_train_order_profile",
+    "spikes",
 ]
 
+from importlib.metadata import PackageNotFoundError, version
+
+from .DiscreteFunc import DiscreteFunc
+from .isi_distance import (
+    isi_distance,
+    isi_distance_matrix,
+    isi_distance_multi,
+    isi_profile,
+    isi_profile_multi,
+)
 from .PieceWiseConstFunc import PieceWiseConstFunc
 from .PieceWiseLinFunc import PieceWiseLinFunc
-from .DiscreteFunc import DiscreteFunc
-from .SpikeTrain import SpikeTrain
-
-from .isi_distance import (
-    isi_profile,
-    isi_distance,
-    isi_profile_multi,
-    isi_distance_multi,
-    isi_distance_matrix,
-)
-from .spike_distance import (
-    spike_profile,
-    spike_distance,
-    spike_profile_multi,
-    spike_distance_multi,
-    spike_distance_matrix,
-)
-from .spike_sync import (
-    spike_sync_profile,
-    spike_sync,
-    spike_sync_profile_multi,
-    spike_sync_multi,
-    spike_sync_matrix,
-    filter_by_spike_sync,
-)
 from .psth import psth
-
-from .spikes import (
-    load_spike_trains_from_txt,
-    save_spike_trains_to_txt,
-    spike_train_from_string,
-    import_spike_trains_from_time_series,
-    merge_spike_trains,
-    generate_poisson_spikes,
-)
-
 from .spike_directionality import (
-    spike_directionality,
-    spike_directionality_values,
-    spike_directionality_matrix,
-    spike_train_order_profile,
-    spike_train_order_profile_bi,
-    spike_train_order_profile_multi,
-    spike_train_order,
-    spike_train_order_bi,
-    spike_train_order_multi,
     optimal_spike_train_sorting,
     permutate_matrix,
+    spike_directionality,
+    spike_directionality_matrix,
+    spike_directionality_values,
+    spike_train_order,
+    spike_train_order_profile,
+    spike_train_order_profile_multi,
 )
-
-from importlib.metadata import version, PackageNotFoundError
+from .spike_distance import (
+    spike_distance,
+    spike_distance_matrix,
+    spike_distance_multi,
+    spike_profile,
+    spike_profile_multi,
+)
+from .spike_sync import (
+    filter_by_spike_sync,
+    spike_sync,
+    spike_sync_matrix,
+    spike_sync_multi,
+    spike_sync_profile,
+    spike_sync_profile_multi,
+)
+from .spikes import (
+    generate_poisson_spikes,
+    import_spike_trains_from_time_series,
+    load_spike_trains_from_txt,
+    merge_spike_trains,
+    save_spike_trains_to_txt,
+    spike_train_from_string,
+)
+from .SpikeTrain import SpikeTrain
 
 try:
     __version__ = version("pyspike")

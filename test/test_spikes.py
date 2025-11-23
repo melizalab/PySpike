@@ -7,13 +7,12 @@ Copyright 2014, Mario Mulansky <mario.mulansky@gmx.net>
 Distributed under the BSD License
 """
 
-from __future__ import print_function
+import os
+
 import numpy as np
 from numpy.testing import assert_allclose
 
 import pyspike as spk
-
-import os
 
 TEST_PATH = os.path.dirname(os.path.realpath(__file__))
 TEST_DATA = os.path.join(TEST_PATH, "PySpike_testdata.txt")

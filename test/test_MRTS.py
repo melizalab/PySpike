@@ -8,6 +8,7 @@ Distributed under the BSD License
 """
 
 import numpy as np
+
 import pyspike as spk
 from pyspike import SpikeTrain
 from pyspike.isi_lengths import default_thresh

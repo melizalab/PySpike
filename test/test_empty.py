@@ -8,13 +8,12 @@ Distributed under the BSD License
 
 """
 
-from __future__ import print_function
 import numpy as np
 from numpy.testing import (
     assert_allclose,
     assert_almost_equal,
-    assert_array_equal,
     assert_array_almost_equal,
+    assert_array_equal,
 )
 
 import pyspike as spk

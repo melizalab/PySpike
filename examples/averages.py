@@ -7,7 +7,6 @@ Copyright 2014, Mario Mulansky <mario.mulansky@gmx.net>
 Distributed under the BSD License
 """
 
-from __future__ import print_function
 
 import pyspike as spk
 

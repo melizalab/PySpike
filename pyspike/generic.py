@@ -7,10 +7,10 @@ Copyright 2015, Mario Mulansky <mario.mulansky@gmx.net>
 Distributed under the BSD License
 """
 
-from __future__ import division
-from pyspike.isi_lengths import default_thresh
-from pyspike.spikes import reconcile_spike_trains, reconcile_spike_trains_bi
 import numpy as np
+
+from pyspike.isi_lengths import default_thresh
+from pyspike.spikes import reconcile_spike_trains
 
 
 def resolve_keywords(**kwargs):
@@ -54,7 +54,7 @@ def _generic_profile_multi(spike_trains, pair_distance_func, indices=None, **kwa
         spike_trains = reconcile_spike_trains(spike_trains)
         kwargs["Reconcile"] = False
 
-    MRTS, RI = resolve_keywords(**kwargs)
+    MRTS, _RI = resolve_keywords(**kwargs)
     if isinstance(MRTS, str):
         kwargs["MRTS"] = default_thresh(spike_trains)
 
@@ -127,7 +127,7 @@ def _generic_distance_multi(
         spike_trains = reconcile_spike_trains(spike_trains)
         kwargs["Reconcile"] = False
 
-    MRTS, RI = resolve_keywords(**kwargs)
+    MRTS, _RI = resolve_keywords(**kwargs)
     if isinstance(MRTS, str):
         kwargs["MRTS"] = default_thresh(spike_trains)
 
@@ -172,7 +172,7 @@ def _generic_distance_matrix(
         spike_trains = reconcile_spike_trains(spike_trains)
         kwargs["Reconcile"] = False
 
-    MRTS, RI = resolve_keywords(**kwargs)
+    MRTS, _RI = resolve_keywords(**kwargs)
     if isinstance(MRTS, str):
         kwargs["MRTS"] = default_thresh(spike_trains)
 

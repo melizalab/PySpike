@@ -5,7 +5,7 @@
 import numpy as np
 
 
-class SpikeTrain(object):
+class SpikeTrain:
     """Class representing spike trains for the PySpike Module."""
 
     def __init__(self, spike_times, edges, is_sorted=True):
@@ -28,7 +28,7 @@ class SpikeTrain(object):
         try:
             self.t_start = float(edges[0])
             self.t_end = float(edges[1])
-        except:
+        except TypeError:
             self.t_start = 0.0
             self.t_end = float(edges)
 

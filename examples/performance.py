@@ -7,12 +7,12 @@ Distributed under the BSD License
 
 """
 
-from __future__ import print_function
 
-import pyspike as spk
-from datetime import datetime
 import cProfile
 import pstats
+from datetime import datetime
+
+import pyspike as spk
 
 # in case you dont have the cython backends, disable the warnings as follows:
 # spk.disable_backend_warning = True
@@ -26,7 +26,7 @@ print("%d spike trains with %d spikes" % (M, int(r * T)))
 spike_trains = []
 
 t_start = datetime.now()
-for i in range(M):
+for _i in range(M):
     spike_trains.append(spk.generate_poisson_spikes(r, T))
 t_end = datetime.now()
 runtime = (t_end - t_start).total_seconds()

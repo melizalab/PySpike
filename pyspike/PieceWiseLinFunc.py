@@ -2,10 +2,11 @@
 # Copyright 2014-2015, Mario Mulansky <mario.mulansky@gmx.net>
 # Distributed under the BSD License
 
-from __future__ import absolute_import, print_function
+
+import collections.abc
 
 import numpy as np
-import collections.abc
+
 import pyspike
 
 
@@ -213,7 +214,7 @@ class PieceWiseLinFunc:
 
     def avrg(self, interval=None):
         """Computes the average of the piece-wise linear function:
-        :math:`a = 1/T \int_0^T f(x) dx` where T is the interval length.
+        :math:`a = 1/T \\int_0^T f(x) dx` where T is the interval length.
 
         :param interval: averaging interval given as a pair of floats, a
                          sequence of pairs for averaging multiple intervals, or

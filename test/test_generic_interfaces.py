@@ -8,7 +8,6 @@ Distributed under the BSD License
 
 """
 
-from __future__ import print_function
 from numpy.testing import assert_allclose
 
 import pyspike as spk

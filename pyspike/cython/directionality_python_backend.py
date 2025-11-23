@@ -10,6 +10,7 @@ Distributed under the BSD License
 """
 
 import numpy as np
+
 from pyspike.cython.python_backend import get_tau
 
 

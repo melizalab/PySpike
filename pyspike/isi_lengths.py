@@ -48,7 +48,7 @@ def isi_lengths(spike_times, t_start, t_end):
 
     dels = [spike_times[i + 1] - spike_times[i] for i in range(i_start, i_end - 1)]
 
-    isi_lengths = [del_start] + dels + [del_end]
+    isi_lengths = [del_start, *dels, del_end]
 
     return isi_lengths
 

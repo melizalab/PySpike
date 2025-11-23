@@ -7,15 +7,15 @@ Copyright 2014, Mario Mulansky <mario.mulansky@gmx.net>
 Distributed under the BSD License
 """
 
-from __future__ import print_function
-import numpy as np
 from copy import copy
+
+import numpy as np
 import pytest
 from numpy.testing import (
     assert_allclose,
     assert_almost_equal,
-    assert_array_equal,
     assert_array_almost_equal,
+    assert_array_equal,
 )
 
 import pyspike as spk

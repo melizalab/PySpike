@@ -3,6 +3,7 @@
 # Distributed under the BSD License
 
 import numpy as np
+
 from pyspike import PieceWiseConstFunc
 
 

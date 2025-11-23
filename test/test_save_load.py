@@ -8,11 +8,10 @@ Distributed under the BSD License
 
 """
 
-from __future__ import print_function
-from numpy.testing import assert_array_equal
-
-import tempfile
 import os.path
+import tempfile
+
+from numpy.testing import assert_array_equal
 
 import pyspike as spk
 

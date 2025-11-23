@@ -4,18 +4,16 @@ Copyright 2014-2015, Mario Mulansky <mario.mulansky@gmx.net>
 Distributed under the BSD License
 """
 
-from __future__ import absolute_import
-
 import pyspike
-from pyspike import PieceWiseConstFunc
 from pyspike.generic import (
-    _generic_profile_multi,
-    _generic_distance_multi,
     _generic_distance_matrix,
+    _generic_distance_multi,
+    _generic_profile_multi,
     resolve_keywords,
 )
 from pyspike.isi_lengths import default_thresh
-from pyspike.spikes import reconcile_spike_trains, reconcile_spike_trains_bi
+from pyspike.PieceWiseConstFunc import PieceWiseConstFunc
+from pyspike.spikes import reconcile_spike_trains_bi
 
 
 ############################################################
@@ -77,7 +75,7 @@ def isi_profile_bi(spike_train1, spike_train2, **kwargs):
         )
         kwargs["Reconcile"] = False
 
-    MRTS, RI = resolve_keywords(**kwargs)
+    MRTS, _RI = resolve_keywords(**kwargs)
     if isinstance(MRTS, str):
         MRTS = default_thresh([spike_train1, spike_train2])
         kwargs["MRTS"] = MRTS
@@ -189,7 +187,7 @@ def isi_distance_bi(spike_train1, spike_train2, interval=None, **kwargs):
         )
         kwargs["Reconcile"] = False
 
-    MRTS, RI = resolve_keywords(**kwargs)
+    MRTS, _RI = resolve_keywords(**kwargs)
     if isinstance(MRTS, str):
         MRTS = default_thresh([spike_train1, spike_train2])
         kwargs["MRTS"] = MRTS
