@@ -1,4 +1,4 @@
-""" profiles.py
+"""profiles.py
 
 Simple example showing some functionality of distance profiles.
 
@@ -7,13 +7,11 @@ Copyright 2015, Mario Mulansky <mario.mulansky@gmx.net>
 Distributed under the BSD License
 """
 
-
 from __future__ import print_function
 
 import pyspike as spk
 
-spike_trains = spk.load_spike_trains_from_txt("PySpike_testdata.txt",
-                                              edges=(0, 4000))
+spike_trains = spk.load_spike_trains_from_txt("PySpike_testdata.txt", edges=(0, 4000))
 
 ##### ISI PROFILES #######
 
