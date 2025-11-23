@@ -1,7 +1,7 @@
 PySpike
 =======
 
-|ProjectStatus|_ |Version|_ |BuildStatus|_ |License|_ |PythonVersions|_ |DOI|
+|ProjectStatus|_ |Version|_ |BuildStatus|_ |License|_ |PythonVersions|_
 
 .. |ProjectStatus| image:: https://www.repostatus.org/badges/latest/active.svg
 .. _ProjectStatus: https://www.repostatus.org/#active
