@@ -16,6 +16,20 @@ jobs:
 
     steps:
     - uses: actions/checkout@v5
+    - name: Install system dependencies (Ubuntu)
+      if: runner.os == 'Linux'
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libopenblas-dev liblapack-dev gfortran
+    - name: Install system dependencies (macOS)
+      if: runner.os == 'macOS'
+      run: |
+        brew install openblas lapack gcc
+    - name: Install system dependencies (Windows)
+      if: runner.os == 'Windows'
+      run: |
+        choco install -y openblas
+      shell: pwsh
     - name: Install uv
       uses: astral-sh/setup-uv@v7
       with:
