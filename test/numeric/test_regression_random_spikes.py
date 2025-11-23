@@ -8,7 +8,12 @@ from __future__ import print_function
 
 import os
 import numpy as np
-from scipy.io import loadmat
+try:
+    from scipy.io import loadmat
+    HAS_SCIPY = True
+except ImportError:
+    HAS_SCIPY = False
+import pytest
 import pyspike as spk
 
 from numpy.testing import assert_almost_equal
@@ -16,6 +21,8 @@ from numpy.testing import assert_almost_equal
 spk.disable_backend_warning = True
 
 max_trr_trials = 100  # speed things up
+
+pytestmark = pytest.mark.skipif(not HAS_SCIPY, reason="scipy not available")
 
 def test_regression_random():
 
