@@ -15,6 +15,8 @@ PySpike provides the same fundamental functionality as the SPIKY_ framework for 
 
 All source codes are available on `Github <https://github.com/mariomulansky/PySpike>`_  and are published under the BSD_License_.
 
+This is a fork maintained by the Meliza Lab for compatible builds and CI-generated wheels under PEP518.
+
 Citing PySpike
 ----------------------------
 If you use PySpike in your research, please cite our SoftwareX publication on PySpike:
